@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  website:
+    build: .
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./Django_project:/project
+  nginx:
+    image: 'nginx'
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/nginx.conf.d
+    depends_on:
+      - website
+
+
