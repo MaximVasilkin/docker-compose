@@ -1,6 +1,6 @@
 # примеры API-запросов
 
-@baseUrl = http://localhost:8000/api/v1
+@baseUrl = http://localhost:80/api/v1
 
 # создание продукта
 POST {{baseUrl}}/products/
@@ -52,11 +52,6 @@ Content-Type: application/json
       "product": 2,
       "quantity": 250,
       "price": 120.50
-    },
-    {
-      "product": 3,
-      "quantity": 100,
-      "price": 180
     }
   ]
 }
@@ -73,12 +68,8 @@ Content-Type: application/json
       "product": 2,
       "quantity": 222,
       "price": 22
-    },
-    {
-      "product": 7,
-      "quantity": 77,
-      "price": 777
     }
+
   ]
 }
 

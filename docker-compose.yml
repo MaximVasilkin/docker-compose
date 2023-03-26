@@ -2,18 +2,24 @@ version: '3.9'
 
 volumes:
   pgdata:
+  static_files:
+
+networks:
+  backend:
+  frontend:
 
 services:
   website:
     build: .
-    ports:
-      - '8000:8000'
     volumes:
-      - ./Django_project:/project
+      - static_files:/project/static
     depends_on:
       - postgresql
     env_file:
       - .env
+    networks:
+      - backend
+      - frontend
 
   postgresql:
     image: 'postgres:12'
@@ -23,6 +29,8 @@ services:
       POSTGRES_PASSWORD: 'pstpwd'
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - backend
 
   nginx:
     image: 'nginx'
@@ -30,10 +38,12 @@ services:
       - '80:80'
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./Django_project/static:/var/www/html/static
+      - static_files:/var/www/html/static
     depends_on:
       - website
       - postgresql
+    networks:
+      - frontend
 
 
 
