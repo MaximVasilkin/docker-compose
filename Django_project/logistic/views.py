@@ -1,5 +1,3 @@
-import os
-
 from django.http import HttpResponse
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
@@ -9,7 +7,7 @@ from logistic.serializers import ProductSerializer, StockSerializer
 
 
 def main_page(request):
-    msg = os.listdir('/project/static')
+    msg = 'Stocks products API v1'
     page = '''
     <!DOCTYPE html>
     <html lang="ru">
